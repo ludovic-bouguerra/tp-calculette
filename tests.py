@@ -13,3 +13,7 @@ assert(serveur.mul(1, 2) == 2)
 assert(serveur.mul(3, 1) == 3)
 assert(serveur.mul(5, 2) == 10)
 assert(serveur.mul(7, -5) == -35)
+
+assert(serveur.div(1, 0) == None)
+assert(serveur.div(2, 1) == 2)
+assert(serveur.div(2, 2) == 1)
