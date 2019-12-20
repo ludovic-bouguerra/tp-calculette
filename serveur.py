@@ -70,9 +70,9 @@ if __name__ == '__main__':
     socket.listen(1)
     socket_client, info_client = socket.accept()
 
-    valeur_1 = int(socket_client.recv(1024).decode())
-    signe = socket_client.recv(1024).decode()
-    valeur_2 = int(socket_client.recv(1024).decode())
+    valeur_1 = int(socket_client.recv(1).decode())
+    signe = socket_client.recv(1).decode()
+    valeur_2 = int(socket_client.recv(1).decode())
 
 
     if (signe == "+"):
