@@ -1,3 +1,4 @@
+import socket
 
 def add(val1, val2):
     """Ajoute deux valeurs entre elles
@@ -60,3 +61,30 @@ def div(val1, val2):
     else:
         return val1 / val2
 
+if __name__ == '__main__':
+    HOST = ''
+    PORT = 50007  
+
+    socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket.bind((HOST, PORT))
+    socket.listen(1)
+    socket_client, info_client = socket.accept()
+
+    valeur_1 = int(socket_client.recv(1024).decode())
+    signe = socket_client.recv(1024).decode()
+    valeur_2 = int(socket_client.recv(1024).decode())
+
+
+    if (signe == "+"):
+        resultat = add(valeur_1, valeur_2)
+    elif (signe == "-"):
+        resultat = sub(valeur_1, valeur_2)
+    elif (signe == "*"):
+        resultat = mul(valeur_1, valeur_2)
+    elif (signe == "/"):
+        resultat = div(valeur_1, valeur_2)        
+
+    socket_client.send(str(resultat).encode())
+
+    socket_client.close()
+    socket.close()
