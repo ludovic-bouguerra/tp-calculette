@@ -72,7 +72,13 @@ if __name__ == '__main__':
 
     valeur_1 = int(socket_client.recv(1).decode())
     signe = socket_client.recv(1).decode()
-    valeur_2 = int(socket_client.recv(1).decode())
+    try: 
+        valeur_2 = int(socket_client.recv(1).decode())
+    except ValueError:
+        print("Il est mechant le client")
+        socket_client.close()
+        exit(0)
+
 
 
     if (signe == "+"):
